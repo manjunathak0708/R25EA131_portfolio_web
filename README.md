@@ -1,2 +1,3 @@
-hey hiii this is manjunatha k 
+Hi, I am Manjunatha K, a Computer Science and Engineering student specializing in Artificial Intelligence and Machine Learning at REVA University. I am interested in software development and enjoy working with C++, Data Structures and Algorithms, and web development. I have experience with the MERN stack and I am currently improving my problem-solving skills through DSA practice. I have also secured 2nd place in a GeeksforGeeks coding contest. I enjoy learning new technologies, building projects, and continuously improving my technical skills.
+
 portfolio link : https://manjunathak-two.vercel.app/
