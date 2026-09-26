@@ -56,6 +56,7 @@ export default function App() {
         <MetricsRow />
         <CorePhilosophy />
         <AppliedWork />
+        {/* Projects section */}
         <ProblemSolvingLog />
         <CapabilitiesMatrix />
         <EducationTrajectory />
