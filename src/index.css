@@ -27,8 +27,32 @@
   box-shadow: inset 0 0 0 1px rgba(0, 81, 213, 0.045), 0 10px 28px rgba(11, 28, 48, 0.045);
 }
 
-:where(button, a):hover {
-  transition-duration: 220ms;
+:where(button, a) {
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1), background-color 420ms ease, border-color 420ms ease, color 220ms ease;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+:where(button, a):hover,
+:where(button, a):focus-visible {
+  transform: translateY(-3px) scale(1.015);
+}
+
+:where([class*="bg-white"], [class*="bg-[#f8f9ff]"], [class*="bg-[#eff4ff]"], [class*="bg-[#f1f5f9]"]):hover {
+  transform: translateY(-5px) scale(1.008);
+  box-shadow: 0 22px 48px rgba(11, 28, 48, 0.12), 0 0 26px rgba(0, 156, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(button, a) {
+    transition: none;
+  }
+
+  :where(button, a):hover,
+  :where(button, a):focus-visible,
+  :where([class*="bg-white"], [class*="bg-[#f8f9ff]"], [class*="bg-[#eff4ff]"], [class*="bg-[#f1f5f9]"]):hover {
+    transform: none;
+  }
 }
 
 @supports not (background: color-mix(in srgb, white, transparent)) {
