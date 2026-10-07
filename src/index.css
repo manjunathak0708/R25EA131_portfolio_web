@@ -6,8 +6,34 @@
   }
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #f8f9ff;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(0, 156, 255, 0.09), transparent 28rem),
+      radial-gradient(circle at 88% 24%, rgba(0, 81, 213, 0.07), transparent 30rem),
+      #f8f9ff;
     color: #0b1c30;
+  }
+}
+
+/* Color-preserving glass surfaces */
+:where([class*="bg-white"], [class*="bg-[#f8f9ff]"], [class*="bg-[#eff4ff]"], [class*="bg-[#f1f5f9]"]) {
+  background-color: color-mix(in srgb, #ffffff 58%, transparent) !important;
+  backdrop-filter: blur(18px) saturate(125%);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+  box-shadow: 0 14px 36px rgba(11, 28, 48, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+:where([class*="border-[#e2e8f0"], [class*="border-[#dbe7ff"], [class*="border-[#cbd5e1"]) {
+  border-color: rgba(255, 255, 255, 0.72) !important;
+  box-shadow: inset 0 0 0 1px rgba(0, 81, 213, 0.045), 0 10px 28px rgba(11, 28, 48, 0.045);
+}
+
+:where(button, a):hover {
+  transition-duration: 220ms;
+}
+
+@supports not (background: color-mix(in srgb, white, transparent)) {
+  :where([class*="bg-white"], [class*="bg-[#f8f9ff]"], [class*="bg-[#eff4ff]"], [class*="bg-[#f1f5f9]"]) {
+    background-color: rgba(255, 255, 255, 0.58) !important;
   }
 }
 
