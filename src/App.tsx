@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Navbar } from './components/Navbar.tsx';
 import { Hero } from './components/Hero.tsx';
 import { MetricsRow } from './components/MetricsRow.tsx';
@@ -14,6 +14,33 @@ import { Footer } from './components/Footer.tsx';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
+  const cursorGlowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const glow = cursorGlowRef.current;
+    if (!glow || window.matchMedia('(pointer: coarse)').matches) return;
+
+    let frame = 0;
+    const handlePointerMove = (event: PointerEvent) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        glow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+        glow.style.opacity = '1';
+      });
+    };
+    const handlePointerLeave = () => {
+      glow.style.opacity = '0';
+    };
+
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    document.documentElement.addEventListener('mouseleave', handlePointerLeave);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('pointermove', handlePointerMove);
+      document.documentElement.removeEventListener('mouseleave', handlePointerLeave);
+    };
+  }, []);
+
 
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId);
@@ -47,6 +74,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#f8f9ff] text-[#0b1c30] flex flex-col selection:bg-[#0051d5]/15 selection:text-[#0051d5]">
+      <div ref={cursorGlowRef} className="cursor-theme-shadow" aria-hidden="true" />
       {/* Navigation */}
       <Navbar activeSection={activeSection} onNavigate={scrollToSection} />
 

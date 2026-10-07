@@ -15,3 +15,34 @@
   font-family: 'JetBrains Mono', monospace, ui-monospace, SFMono-Regular;
 }
 
+.cursor-theme-shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 22rem;
+  height: 22rem;
+  pointer-events: none;
+  border-radius: 9999px;
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0);
+  translate: -50% -50%;
+  background: radial-gradient(circle, rgba(0, 81, 213, 0.16) 0%, rgba(0, 156, 255, 0.08) 34%, rgba(0, 156, 255, 0) 70%);
+  filter: blur(10px);
+  mix-blend-mode: multiply;
+  transition: opacity 180ms ease;
+  will-change: transform, opacity;
+}
+
+@media (pointer: coarse) {
+  .cursor-theme-shadow {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-theme-shadow {
+    transition: none;
+  }
+}
+
