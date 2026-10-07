@@ -24,7 +24,8 @@ export default function App() {
     const handlePointerMove = (event: PointerEvent) => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        glow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+        glow.style.setProperty('--cursor-x', `${event.clientX}px`);
+        glow.style.setProperty('--cursor-y', `${event.clientY}px`);
         glow.style.opacity = '1';
       });
     };
@@ -32,7 +33,7 @@ export default function App() {
       glow.style.opacity = '0';
     };
 
-    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    document.addEventListener('pointermove', handlePointerMove, { passive: true });
     document.documentElement.addEventListener('mouseleave', handlePointerLeave);
     return () => {
       cancelAnimationFrame(frame);

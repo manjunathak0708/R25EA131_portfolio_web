@@ -43,21 +43,19 @@
 
 .cursor-theme-shadow {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   z-index: 50;
-  width: 22rem;
-  height: 22rem;
   pointer-events: none;
-  border-radius: 9999px;
   opacity: 0;
-  transform: translate3d(-50%, -50%, 0);
-  translate: -50% -50%;
-  background: radial-gradient(circle, rgba(0, 81, 213, 0.16) 0%, rgba(0, 156, 255, 0.08) 34%, rgba(0, 156, 255, 0) 70%);
-  filter: blur(10px);
+  background: radial-gradient(
+    circle 12rem at var(--cursor-x, 50%) var(--cursor-y, 50%),
+    rgba(0, 81, 213, 0.18) 0%,
+    rgba(0, 156, 255, 0.1) 32%,
+    rgba(0, 156, 255, 0) 72%
+  );
   mix-blend-mode: multiply;
   transition: opacity 180ms ease;
-  will-change: transform, opacity;
+  will-change: background, opacity;
 }
 
 @media (pointer: coarse) {
